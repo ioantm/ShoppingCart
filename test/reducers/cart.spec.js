@@ -1,4 +1,4 @@
-import { ADD_TO_CART } from '../../constants/ActionTypes';
+import { ADD_TO_CART, CHECKOUT_REQUEST } from '../../constants/ActionTypes';
 import cart from '../../reducers/cart';
 import expect from 'expect';
 
@@ -12,6 +12,10 @@ describe('reducers', () => {
 		it('shuld provide inital state', () => {
 			expect(cart(undefined, {})).toEqual(initalState);
 		});
+
+		it('should handle CHECKOUT_REQUEST action', () => {
+			export(cart({}, { type: CHECKOUT_REQUEST })).toEqual(initalState);
+		})
 
 		it('should handle ADD_TO_CART action', () => {
 			expect(cart(initalState, {
