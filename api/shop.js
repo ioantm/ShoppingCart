@@ -7,7 +7,7 @@ export default {
 		setTimeout(()=>cb(_products), timeout || TIMEOUT)
 	},
 
-	buyProduct(cb, timeout) {
+	buyProduct(products, cb, timeout) {
 		setTimeout(() => cb(), timeout || TIMEOUT);
 	}
 }

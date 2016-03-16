@@ -5,6 +5,9 @@ import reducer from './reducers';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import { getAllProducts } from './actions';
+import ProductsContainer from './containers/ProductsContainer';
+import { Provider } from 'react-redux';
+import App from './components/App';
 
 const middleware = [logger(), thunk];
 const store = createStore(
@@ -16,6 +19,8 @@ console.log(process.env.NODE_ENV );
 store.dispatch(getAllProducts());
 
 ReactDOM.render(
-	<div>Af</div>,
+	<Provider store={store}>
+		<App/>
+	</Provider>,
 	document.getElementById('root')
 )

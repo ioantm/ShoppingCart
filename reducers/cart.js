@@ -23,7 +23,6 @@ function quantityById(state = initialState.quantityById, action) {
 	switch(action.type) {
 		case ADD_TO_CART:
 			const { productId } = action;
-
 			return {
 				...state,
 				[productId]: (state[productId] || 0) + 1 
@@ -33,16 +32,26 @@ function quantityById(state = initialState.quantityById, action) {
 	}
 }
 
+
+
 export default function(state = initialState, action) {
 	switch(action.type) {
 		case CHECKOUT_SUCCESS: 
 			return initialState;
 		case CHECKOUT_FAILURE: 
 			return action.cart;
+		default:
+			return {
+				addedIds: addedIds(state.addedIds, action),
+				quantityById: quantityById(state.quantityById, action)
+			}
 	}
-	default:
-		return {
-			addedIds: addedIds(state.addedIds, action),
-			quantityById: quantityById(state.quantityById, action)
-		}
+}
+
+export function getAddedIds(state) {
+	return state.addedIds;
+}
+
+export function getQuantity(state, id) {
+	return state.quantityById[id];
 }
